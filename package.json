@@ -1,0 +1,25 @@
+{
+  "name": "liri",
+  "version": "1.0.0",
+  "description": "intro to node, npm",
+  "main": "liri.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christopherbiemer/LIRI.git"
+  },
+  "author": "Christopher Biemer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christopherbiemer/LIRI/issues"
+  },
+  "homepage": "https://github.com/christopherbiemer/LIRI#readme",
+  "dependencies": {
+    "moment": "^2.19.1",
+    "request": "^2.83.0",
+    "spotify-web-api-node": "^2.5.0",
+    "twitter": "^1.7.1"
+  }
+}

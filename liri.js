@@ -20,16 +20,26 @@ var spotify_call = new spotify({
 })
 
 var command = process.argv[2];
-var specific = process.argv[3];
+var specific = "";
+var nodes = process.argv;
 
-var morespecific;
+for (var i = 3; i < nodes.length; i++) {
 
-if (specific == undefined) {
-	morespecific = "";
+  if (i > 3 && i < nodes.length) {
+
+    specific = specific + "+" + nodes[i];
+
+  }
+
+  else {
+
+    specific += nodes[i];
+
+  }
 }
 
 function master() {
-	fs.appendFile("log.txt", command + " " + morespecific, function(error) {
+	fs.appendFile("log.txt", command + " " + specific, function(error) {
 				})
 	if (command == "my-tweets") {
 		var params = {screen_name: 'beligerentitis'};
@@ -55,7 +65,7 @@ function master() {
 
 	else if (command == "spotify-this-song") {
 		var song_name = specific;
-		if (song_name == undefined) {
+		if (song_name == "") {
 			song_name = '0hrBpAOgrt8RXigk83LLNE';
 			spotify_call.request("https://api.spotify.com/v1/tracks/" + song_name)
 			.then(function(data) {
@@ -104,13 +114,11 @@ function master() {
 
 	else if (command == "movie-this") {
 		var movie_name = specific;
-		if (movie_name == undefined) {
+		if (movie_name == "") {
 			movie_name = 'Mr. Nobody';
 		}
 
 		var queryURL = "http://www.omdbapi.com/?t=" + movie_name + "&y=&plot=short&apikey=40e9cece";
-
-		console.log(queryURL);
 
 		request(queryURL, function(error, response, body) {
 			if (!error && response.statusCode === 200) {
